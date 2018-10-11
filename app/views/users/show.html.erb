@@ -1,0 +1,18 @@
+
+<% if flash[:notice]%>
+    <div class="alert alert-success" role="alert"><%= flash[:notice] %>	
+    </div>
+<% end %>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+        	<td>Nome: <%= @user.full_name %></td>
+            <td>Localização:  <%= @user.location %></td>
+            <td>Bio: <%= @user.bio %></td>
+        </tr>
+    </thead>
+<tbody>
+    </tbody>    
+</table>
+<%= link_to "Editar Perfil", edit_user_path(@user), class: "btn btn-success" %>
+<%= link_to "Home", root_path, class: "btn btn-primary" %>
