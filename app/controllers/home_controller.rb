@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
-def index
+	def index
 		@rooms = Room.take(3)
 	end
 end
+

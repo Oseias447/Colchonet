@@ -32,9 +32,9 @@ pt-BR:
       confirm_email:
 
   room:
-    description: Descrição
-    location: Localização
-    title: Título
+  description: Descrição
+  location: Localização
+  title: Título
 
   activemodel:
     errors: 
@@ -43,6 +43,14 @@ pt-BR:
           attributes:
             base:
               invalid_login: "Usuário ou senha inválidos"
+
+
+
+    my_sessions:
+      user:
+        flash:
+          notice:
+            signed_in: "Acesso com sucesso" 
 
 
     attributes:
@@ -60,7 +68,7 @@ pt-BR:
       success: Cadastro realizado com sucesso.
       failed: Não foi possível realizar o cadastro
 
-      
+
   activerecord:
     models:
       user: Usuário
@@ -73,4 +81,56 @@ pt-BR:
       password: Senha
       password_confirmation: Confirme sua senha
 
+  layout:
+    my_profile: Meu perfil
+    rooms: Quartos
+    new_room: Cadastre seu quarto!
+    signup: Cadastro
+    signin: Login
+    signout: Logout
+
+
+  flash:
+    alert:
+      needs_login: "Você precisa estar logado para continuar"    
+    notice:
+      signed_in: "Login efetuado com sucesso!"
+      signed_out: "Logout efetuado com sucesso. Até logo!"
+      already_logged_in: "Você já está logado."
+      room_created: "Quarto cadastrado com sucesso!"
+      room_updated: "Quarto atualizado com sucesso!"
+
+  formats:
+    default: ! "%A, %d de %B de %Y, %H:%M h"
+    long: ! "%A, %d de %B de %Y, %H:%M h"
+    short: ! "%d/%m, %H:%M h"
+
+  dialogs:
+    destroy: "Tem certeza que deseja remover?"
+
+  rooms:
+    index:
+      title: "Quartos disponíveis"
+    room:
+      owner_html: "&mdash; %{owner} (%{when})"
+      edit: "Editar"
+      destroy: "Remover"
+    review_form:
+      login_to_review: "Faça o login para avaliar quartos"
+    review:
+      stats:
+        zero: 'Não há avaliações'
+        one: '%{average}/%{max} (1 avaliação)'
+        other: '%{average}/%{max} (%{count} avaliações)'
+
+  show:
+    edit: "Editar perfil"
+    title: "Perfil: %{user_name}"
+
+  activerecord:
+    models:
+      room: Quarto
+      user: Usuário
+      review: Avaliação
+        
 
