@@ -1,17 +1,28 @@
 <article class="room">
-	<h2><%= link_to room.title, room %> </h2>
+<h2><%= link_to highlight(room.title, @search_query),
+	room.route %>
+ </h2>
+<p>
+	<span class="location">
+		<%= link_to highlight(room.location, @search_query),
+		"https://maps.google.com/?q=#{room.location}",
+	target: :blank %>
+	</span>
+</p>
+<p><%= highlight(room.description || '', @search_query) %> </p>
 
-	<%= render partial: 'review', locals: {room: room} %>
 
-	<% if belongs_to_user(room) %>
-	<ul>
-		<li>
-			<%= link_to t('.edit'), edit_room_path(room.route) %>
-		</li>
-		<li><%= link_to t('.destroy'), room_path(room.route),
-							method: :delete,
-							data: {confirm: t('dialogs.destroy')} %>
-		</li>
-	</ul>
+<%= render partial: 'review', locals: {room: room} %>
+
+<% if belongs_to_user(room) %>
+<ul>
+	<li>
+		<%= link_to t('.edit'), edit_room_path(room.route) %>
+	</li>
+	<li><%= link_to t('.destroy'), room_path(room.route),
+						method: :delete,
+						data: {confirm: t('dialogs.destroy')} %>
+	</li>
+</ul>
 <% end %>
 </article>

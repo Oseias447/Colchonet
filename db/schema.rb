@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_15_124513) do
+ActiveRecord::Schema.define(version: 2018_10_16_200134) do
 
   create_table "reviews", force: :cascade do |t|
     t.integer "user_id"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 2018_10_15_124513) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "reviews_count"
+    t.string "slug"
+    t.index ["slug"], name: "index_rooms_on_slug", unique: true
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 

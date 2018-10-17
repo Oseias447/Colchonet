@@ -1,5 +1,8 @@
+<%= csrf_meta_tags %>
+
 <% if room.can_review? %>
 	<%= form_for room.review_route, remote: true do |f| %>
+		<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 		<% room.review_points.each do |point| %>
 		<%= f.radio_button :points, point %>
 		<%= f.label :points, point, value: point do %>
