@@ -56,4 +56,17 @@ class RoomPresenter
 	def to_model
 		@room.to_model
 	end
+
+	def picture_url
+		@room.picture_url
+	end
+
+	def thumb_url
+		@room.picture.thumb.url
+	end
+
+	def has_picture?
+		@room.picture?
+	end
+
 end

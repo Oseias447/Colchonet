@@ -1,28 +1,30 @@
 class RoomsController < ApplicationController
+  
+  PER_PAGE = 3
 
-before_action :set_room, only: [:show]
-before_action :set_users_room,
-  only: [:edit, :update, :destroy]
+  before_action :set_room, only: [:show, :edit, :update]
+  before_action :set_users_room,
+    only: [:edit, :update, :destroy]
 
-before_action :require_authentication,
+  before_action :require_authentication,
   only: [:new, :edit, :create, :update, :destroy]
 
   def index
-    # O método #map, de coleções, retornará um novo Array
-    # contendo o resultado do bloco. Dessa forma, para cada
-    # quarto, retornaremos o presenter equivalente.
     @search_query = params[:q]
 
-    @rooms = Room.most_recent.map do |room|
-      # Não exibiremos o formulário na listagem
-      RoomPresenter.new(room, self, false)
-    end
+    rooms = Room.search(@search_query).
+      most_recent.
+      page(params[:page]).
+      per(PER_PAGE)
+
+      @rooms = RoomCollectionPresenter.new(rooms, self) 
   end
 
   def show
       if user_signed_in?
         @user_review = @room.reviews.
         find_or_initialize_by(user_id: current_user.id)
+      end
   end
 
   def new
@@ -48,7 +50,6 @@ before_action :require_authentication,
       else
         render :edit
       end
-    end
   end
 
   def destroy
@@ -68,6 +69,7 @@ before_action :require_authentication,
   end
 
   def room_params
-    params.require(:room).permit(:title,:location,:description)
+    params.require(:room).
+    permit(:title,:location,:description, :picture)
   end
 end
